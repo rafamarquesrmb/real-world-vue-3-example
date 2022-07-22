@@ -3,6 +3,8 @@
     <h1>{{ event.title }}</h1>
     <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
     <p>{{ event.description }}</p>
+
+    <router-link :to="{ name: 'EventList' }">Return to events list</router-link>
   </div>
 </template>
 
