@@ -15,12 +15,16 @@ const routes = [
     }),
   },
   {
-    path: "/about",
+    path: "/about-us",
     name: "About",
     component: AboutView,
   },
   {
-    path: "/event/:id",
+    path: "/about-us",
+    redirect: { name: "About" },
+  },
+  {
+    path: "/events/:id",
     name: "EventLayout",
     props: true,
     component: EventLayout,
