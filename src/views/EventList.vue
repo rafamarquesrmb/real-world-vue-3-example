@@ -28,7 +28,6 @@
 import EventServices from "@/services/EventServices";
 // @ is an alias to /src
 import EventCard from "@/components/EventCard.vue";
-import NProgress from "nprogress";
 export default {
     name: "EventList",
     props: ["page"],
@@ -42,7 +41,6 @@ export default {
         };
     },
     beforeRouteEnter(routeTo, routeFrom, next) {
-        NProgress.start();
         EventServices.getEvents(2, parseInt(routeTo.query.page) || 1)
             .then((response) => {
                 next((comp) => {
@@ -53,13 +51,10 @@ export default {
             .catch(() => {
                 next({ name: "NetworkError" });
             })
-            .finally(() => {
-                NProgress.done();
-            });
+            .finally(() => {});
     },
     beforeRouteUpdate(routeTo) {
-        NProgress.start();
-        EventServices.getEvents(2, parseInt(routeTo.query.page) || 1)
+        return EventServices.getEvents(2, parseInt(routeTo.query.page) || 1)
             .then((response) => {
                 this.events = response.data;
                 this.totalEvents = response.headers["x-total-count"];
@@ -67,9 +62,7 @@ export default {
             .catch(() => {
                 return { name: "NetworkError" };
             })
-            .finally(() => {
-                NProgress.done();
-            });
+            .finally(() => {});
     },
     computed: {
         hasNextPage() {
