@@ -9,6 +9,7 @@ import NotFound from "../views/NotFound.vue";
 import NetworkError from "../views/NetworkError.vue";
 import NProgress from "nprogress";
 import EventServices from "@/services/EventServices";
+import GStore from "@/store";
 const routes = [
     {
         path: "/",
@@ -35,7 +36,7 @@ const routes = [
         beforeEnter: (to) => {
             return EventServices.getEventById(to.params.id)
                 .then((response) => {
-                    to.event = response.data;
+                    GStore.event = response.data;
                 })
                 .catch((err) => {
                     if (err.response && err.response.status == 404) {
