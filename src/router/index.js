@@ -6,6 +6,7 @@ import EventEdit from "../views/event/EventEdit.vue";
 import EventRegister from "../views/event/EventRegister.vue";
 import EventLayout from "../views/event/EventLayout.vue";
 import NotFound from "../views/NotFound.vue";
+import NetworkError from "../views/NetworkError.vue";
 const routes = [
     {
         path: "/",
@@ -14,11 +15,6 @@ const routes = [
         props: (route) => ({
             page: parseInt(route.query.page) || 1,
         }),
-    },
-    {
-        path: "/:catchall(.*)",
-        name: "NotFound",
-        component: NotFound,
     },
     {
         path: "/about-us",
@@ -56,6 +52,17 @@ const routes = [
         path: "/:catchall(.*)",
         name: "NotFound",
         component: NotFound,
+    },
+    {
+        path: "/404/:resource",
+        name: "404Resource",
+        component: NotFound,
+        props: true,
+    },
+    {
+        path: "/network-error",
+        name: "NetworkError",
+        component: NetworkError,
     },
 ];
 
