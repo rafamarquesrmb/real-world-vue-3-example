@@ -1,15 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 import EventList from "../views/EventList.vue";
-import AboutView from "../views/AboutView.vue";
-import EventDetails from "../views/event/EventDetails.vue";
-import EventEdit from "../views/event/EventEdit.vue";
-import EventRegister from "../views/event/EventRegister.vue";
-import EventLayout from "../views/event/EventLayout.vue";
-import NotFound from "../views/NotFound.vue";
-import NetworkError from "../views/NetworkError.vue";
 import NProgress from "nprogress";
 import EventServices from "@/services/EventServices";
 import GStore from "@/store";
+
+const AboutView = () =>
+    import(/* webpackChunkName: "about" */ "../views/AboutView.vue");
+const NotFound = () =>
+    import(/* webpackChunkName: "404" */ "../views/NotFound.vue");
+const NetworkError = () =>
+    import(/* webpackChunkName: "404" */ "../views/NetworkError.vue");
+const EventDetails = () =>
+    import(/* webpackChunkName: "events" */ "../views/event/EventDetails.vue");
+const EventEdit = () =>
+    import(/* webpackChunkName: "events" */ "../views/event/EventEdit.vue");
+const EventRegister = () =>
+    import(/* webpackChunkName: "events" */ "../views/event/EventRegister.vue");
+const EventLayout = () =>
+    import(/* webpackChunkName: "events" */ "../views/event/EventLayout.vue");
+
 const routes = [
     {
         path: "/",
